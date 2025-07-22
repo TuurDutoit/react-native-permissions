@@ -170,6 +170,50 @@ export const App = () => {
             </Button>
           </View>
         </View>
+
+        <Divider />
+
+        <View style={{padding: 20, paddingBottom: 32}}>
+          <Text numberOfLines={1} variant="bodyMedium">
+            ATT
+          </Text>
+
+          <View style={{flexDirection: 'row', marginTop: 12}}>
+            <Button
+              icon="eye-outline"
+              mode="contained"
+              onPress={() => {
+                RNPermissions.check(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY)
+                        .then((status) => {
+                          showSnackbar(`check(${PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY})`, status);
+                        })
+                        .catch((error) => {
+                          console.error(error);
+                        });
+              }}
+            >
+              Check
+            </Button>
+
+            <View style={{width: 8}} />
+
+            <Button
+              icon="help-circle-outline"
+              mode="contained"
+              onPress={() => {
+                RNPermissions.request(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY)
+                        .then((status) => {
+                          showSnackbar(`request(${PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY})`, status);
+                        })
+                        .catch((error) => {
+                          console.error(error);
+                        });
+              }}
+            >
+              Request
+            </Button>
+          </View>
+        </View>
       </ScrollView>
 
       <Snackbar
